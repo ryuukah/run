@@ -6,36 +6,43 @@ body {
   align-items: center;
 }
 
-/* background image (your garden) */
+/* container */
 .scene {
   width: 600px;
   height: 400px;
-  background: url("your-image.jpg") center/cover no-repeat;
   position: relative;
   overflow: hidden;
 }
 
-/* frame */
-.door-frame {
+/* IMAGE BEHIND */
+.background {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
+  inset: 0;
+  background: url("your-image.jpg") center/cover no-repeat;
+  z-index: 0;
 }
 
-/* panels */
+/* DOOR LAYER */
+.door-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 2;
+}
+
+/* PANELS */
 .panel {
   width: 50%;
   height: 100%;
   position: relative;
-  border: 6px solid #5a3b1e; /* wood */
+  border: 6px solid #5a3b1e;
   box-sizing: border-box;
 
-  /* paper look */
-  background-color: rgba(255, 248, 220, 0.85);
+  /* slightly see-through paper */
+  background: rgba(255, 248, 220, 0.85);
 }
 
-/* GRID (this is the magic part) */
+/* GRID */
 .panel::before {
   content: "";
   position: absolute;
@@ -46,17 +53,16 @@ body {
     linear-gradient(90deg, #5a3b1e 2px, transparent 2px);
 
   background-size: 60px 60px;
-  pointer-events: none;
 }
 
-/* sliding panel */
+/* sliding door */
 .right {
   position: absolute;
   right: 0;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
-/* open state */
+/* open */
 .open {
   transform: translateX(-100%);
 }
